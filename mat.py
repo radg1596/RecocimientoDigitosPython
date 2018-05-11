@@ -54,7 +54,8 @@ class Matriz():
 				aux=[]
 			else:
 				aux.append(elemento)
-		self.numeros.append(aux)
+		if contenido!="":		
+			self.numeros.append(aux)
 	"""
 	Método imprimir
 	Se encarga de desplegar en pantalla una matriz.
@@ -80,13 +81,16 @@ class Matriz():
 		matC=matA + matB
 	"""
 	def sum(self, matb):
-		temp=""
+		mat_c = Matriz("")
 		if self.renglones==matb.renglones and self.columnas==matb.columnas:
+			mat_c.renglones = self.renglones; mat_c.columnas = self.columnas
 			for i in range(0,self.renglones):
+					renglon = []
 					for j in range(0,self.columnas):
-						temp=temp + str (float(self.numeros[i][j])+float(matb.numeros[i][j])) + " "
-					temp=temp+"/ " if i!=self.renglones-1 else temp+" "
-			return Matriz(temp)
+						renglon.append( str (float(self.numeros[i][j])+float(matb.numeros[i][j])) )
+					mat_c.numeros.append(renglon)
+			#print(mat_c.imprimir())
+			return mat_c
 	"""
 	Método rest
 	Se encarga de hacer la resta de dos matrices (A y B) del mismo orden.
@@ -103,14 +107,15 @@ class Matriz():
 	Retorna la matriz transpuesta 
 	"""	
 	def transponer(self):
-		columnas=self.renglones
-		renglones=self.columnas
-		temp=""
-		for i in range(0, renglones):
+		mat_t = Matriz("")
+		mat_t.columnas=self.renglones
+		mat_t.renglones=self.columnas
+		for i in range(0, mat_t.renglones):
+			renglon = []
 			for columna in self.numeros:
-				temp=temp+ columna[i]+" "
-			temp=temp+"/ " if i!=renglones-1 else temp+" "
-		return Matriz(temp)
+				renglon.append(columna[i])
+			mat_t.numeros.append(renglon)
+		return mat_t
 	"""
 	Método mult
 	Se encarga de hacer la multiplicación de dos matrices de orden compatible
@@ -120,18 +125,20 @@ class Matriz():
 		(La matrizA es la instancia)
 	"""	
 	def mult(self, matb):
-		sum_temp=0; temp=""; contador=0
+		mat_c = Matriz("") 
+		mat_c.renglones = self.renglones ;mat_c.columnas = matb.columnas
+		sum_temp=0
 		if self.columnas==matb.renglones:
 			mat_aux=matb.transponer()
 			for renglon in self.numeros:
+				r_temp = []
 				for columna in mat_aux.numeros:
 					for i in range (0, mat_aux.columnas):
 						sum_temp=sum_temp+ (float(renglon[i]) * float(columna[i]))
-					temp=temp+str(sum_temp)+" "
+					r_temp.append(str(sum_temp))
 					sum_temp=0
-				temp=temp+"/ " if contador!=len(self.numeros)-1 else temp+" "
-				contador+=1
-			return Matriz(temp)
+				mat_c.numeros.append(r_temp)
+			return mat_c
 	"""
 	Método null
 	Se encarga de indicarnos si una matriz está llena de ceros.
@@ -155,32 +162,30 @@ class Matriz():
 	Retorna la matriz hardlim
 	"""
 	def hardlim(self):
-		temp=""
-		contador=0
+		mat_h = Matriz("")
+		mat_h.renglones = self.renglones ;mat_h.columnas = self.columnas
 		for renglon in self.numeros:
+			r_temp = []
 			for elemento in renglon:
 				if (float(elemento)>=0.0):
-					temp+="1 "
+					r_temp.append("1")
 				else:
-					temp+="0 "
-			contador+=1
-			temp=temp+"/ " if contador!=len(self.numeros) else temp+" "
-		return Matriz(temp)
-		
+					r_temp.append("0")
+			mat_h.numeros.append(r_temp)
+		return mat_h
+	"""Método multiplicar por un escalar
+	recibe una matriz como parámetro y un escalar
+	retorna la matriz recibida multiplicada por el escalar
+	"""	
 	def m_esc(self, escalar):
-		temp=""
-		contador=0
+		mat_e = Matriz("")
+		mat_e.renglones = self.renglones ;mat_e.columnas = self.columnas
 		for renglon in self.numeros:
+			r_temp = []
 			for elemento in renglon:
-				temp+=str(float(elemento)*escalar)+" "
-			contador+=1
-			temp=temp+"/ " if contador!=len(self.numeros) else temp+" "
-		return Matriz(temp)
-
-
-
-
-
+				r_temp.append( str(float(elemento)*escalar) )
+			mat_e.numeros.append(r_temp)
+		return mat_e
 
 
 

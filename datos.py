@@ -24,7 +24,6 @@ class Datos():
 	def cargar(self):
 		self.tipos=[]
 		self.w=mat_al(4,15)
-		print("hola" + self.w.imprimir())
 		self.b=mat_al(4,1)
 		#0
 		self.tipos.append(Tipo("1 / 1 / 1  / 1 / 0 / 1  / 1 / 0 / 1  / 1 / 0 / 1  / 1 / 1 / 1" ,	"0 / 0 / 0 / 0"))
