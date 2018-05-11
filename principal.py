@@ -15,9 +15,9 @@ class Red():
 	"""
 	def entrenar(self,lista):
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
-		while e_cero!=len(tipos) and ite<19999:
+		while e_cero!=len(tipos) and ite<39999:
 			for tipo in tipos:
-				if e_cero==len(tipos) or ite>20000:
+				if e_cero==len(tipos) or ite>40000:
 					break
 				else:
 					print("Iteracion "+ str(ite) + ": ")
@@ -29,7 +29,7 @@ class Red():
 						e_cero=0
 						w=w.sum( e.mult(tipo.p.transponer()) )
 						b=b.sum(e)
-					self.__imprimir_aux(e, w, b, ite)
+					#self.__imprimir_aux(e, w, b, ite)
 					ite+=1
 		self.w=w; self.b=b;
 	"""
