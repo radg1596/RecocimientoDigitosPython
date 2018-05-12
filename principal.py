@@ -21,14 +21,14 @@ class Red():
 					break
 				else:
 					print("Iteracion "+ str(ite) + ": ")
-					a=w.mult(tipo.p).sum(b).hardlim()
-					e=tipo.t.rest(a)
-					if e.null()==1:
+					a = ( (w*tipo.p)+b ).hardlim()
+					e = tipo.t-a
+					if e.null()==True:
 						e_cero+=1
 					else:
 						e_cero=0
-						w=w.sum( e.mult(tipo.p.transponer()) )
-						b=b.sum(e)
+						w=w + ( e*(tipo.p.transponer()) )
+						b=b+e
 					#self.__imprimir_aux(e, w, b, ite)
 					ite+=1
 		self.w=w; self.b=b;
@@ -38,17 +38,17 @@ class Red():
 	No devuelve nada.
 	"""	
 	def __imprimir_aux(self, e, w, b, ite):
-		print("\ne("+str(ite)+") = \n"+ e.imprimir())
-		print("\nW("+str(ite)+") = \n"+ w.imprimir())
-		print("\nb("+str(ite)+") = \n"+ b.imprimir())
+		print("\ne("+str(ite)+") = \n"+ e)
+		print("\nW("+str(ite)+") = \n"+ w)
+		print("\nb("+str(ite)+") = \n"+ b)
 	"""
 	Se encarga de reconocer un vector de entrada.
 	Recibe una matriz de entrada
 	Devuelve f(wp+b), es decir a
-	"""	
+	"""	 
 	def reconocer(self, entrada):
-		a=self.w.mult(entrada).sum(self.b).hardlim()
-		print(a.imprimir())
+		a=( (self.w*entrada)+(self.b) ).hardlim()
+		print(a)
 		return a
 """
 Es la función principal

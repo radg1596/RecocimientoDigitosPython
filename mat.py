@@ -21,10 +21,10 @@ Se definieron los siguientes atributos:
 	
 Se definieron los siguientes métodos:
 	-imprimir
-	-sum: Suma
-	-rest: Resta
+	-suma: Suma
+	-resta: Resta
 	-transponer: Matriz transpuesta
-	-mult: Multiplicación
+	-multiplicación: Multiplicación
 	-null: Comprobar sí la matriz contiene sólo ceros
 	-hardlim: Obtiene el hardlim de la matriz
 	
@@ -57,12 +57,11 @@ class Matriz():
 		if contenido!="":		
 			self.numeros.append(aux)
 	"""
-	Método imprimir
-	Se encarga de desplegar en pantalla una matriz.
+	Método str
 	No recibe ningún parámetro. 
 	Retorna la matriz como una cadena.
 	"""
-	def imprimir(self):
+	def __str__(self):
 		if self.renglones==1 and self.columnas==1:
 			aux=""+str(self.numeros[0][0])+"\n"
 		else:
@@ -74,13 +73,13 @@ class Matriz():
 			aux=aux[0:len(aux)-1]
 		return aux
 	"""
-	Método sum
+	Método suma +
 	Se encarga de hacer la suma de dos matrices (A y B) del mismo orden.
 	Recibe como parámetro una matrizB
 	Retorna una matrizC, la cuál es la suma de la instancia con la matrizB.
 		matC=matA + matB
 	"""
-	def sum(self, matb):
+	def __add__(self, matb):
 		mat_c = Matriz("")
 		if self.renglones==matb.renglones and self.columnas==matb.columnas:
 			mat_c.renglones = self.renglones; mat_c.columnas = self.columnas
@@ -92,14 +91,14 @@ class Matriz():
 			#print(mat_c.imprimir())
 			return mat_c
 	"""
-	Método rest
+	Método resta -
 	Se encarga de hacer la resta de dos matrices (A y B) del mismo orden.
 	Recibe como parámetro una matrizB
 	Retorna una matrizC, la cuál es la resta de la instancia con la matrizB.
 		matrizC= matrizA - matrizB
 	"""			
-	def rest(self, matb):
-		return self.sum(matb.m_esc(-1))
+	def __sub__(self, matb):
+		return self+matb.m_esc(-1)
 	"""
 	Método transponer
 	No recibe ningún parámetro.
@@ -117,14 +116,14 @@ class Matriz():
 			mat_t.numeros.append(renglon)
 		return mat_t
 	"""
-	Método mult
+	Método multiplicación *
 	Se encarga de hacer la multiplicación de dos matrices de orden compatible
 	Recibe como parametro una matrizB 
 	Retorna una matrizC tal que
 		matrizC = matrizA*matrizB
 		(La matrizA es la instancia)
 	"""	
-	def mult(self, matb):
+	def __mul__(self, matb):
 		mat_c = Matriz("") 
 		mat_c.renglones = self.renglones ;mat_c.columnas = matb.columnas
 		sum_temp=0
@@ -142,17 +141,17 @@ class Matriz():
 	"""
 	Método null
 	Se encarga de indicarnos si una matriz está llena de ceros.
-	Retorna un valor entero dependiendo del resultado:
-		1 si la matriz está llena de ceros
-		0 sino lo está
+	Retorna un valor booleano dependiendo del resultado:
+		True si la matriz está llena de ceros
+		False sino lo está
 	No recibe parámetros.
 	"""	
 	def null(self):
-		nulo=1
+		nulo=True
 		for renglon in self.numeros:
 			for elemento in renglon:
 				if float(elemento)!=0.0:
-					nulo=0
+					nulo=False
 					break
 		return nulo
 	"""	
@@ -189,7 +188,8 @@ class Matriz():
 
 
 
-
+mat = Matriz("0 0 / 2 3")
+print (mat*mat)
 
 
 
