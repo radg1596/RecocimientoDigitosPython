@@ -185,16 +185,22 @@ class Matriz():
 				r_temp.append( str(float(elemento)*escalar) )
 			mat_e.numeros.append(r_temp)
 		return mat_e
-
-
-
-mat = Matriz("0 0 / 2 3")
-print (mat*mat)
-
-
-
-
-
-
+	
+	"""to_s
+	No recibe parámetros
+	Retorna la matriz en una cadena de una sola linea, con el formato:
+		1 0 0 / 1 2 3 / 2 2 2
+	"""
+	def to_s(self):
+		aux = ""
+		if self.renglones==1 and self.columnas==1:
+			aux=str(self.numeros[0][0])
+		else:
+			for renglon in self.numeros:
+				for elemento in renglon:
+					aux=aux+"  "+elemento
+				aux=aux+"  /"
+			aux=aux[0:len(aux)-1]
+		return aux
 
 

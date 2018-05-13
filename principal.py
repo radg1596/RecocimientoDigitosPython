@@ -14,10 +14,11 @@ class Red():
 	Guarda la configuración final de W y b cuando converge el algoritmo.
 	"""
 	def entrenar(self,lista):
+		archivo=open("wb.txt", "w+")
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
-		while e_cero!=len(tipos) and ite<39999:
+		while e_cero!=len(tipos) and ite<99999:
 			for tipo in tipos:
-				if e_cero==len(tipos) or ite>40000:
+				if e_cero==len(tipos) or ite>100000:
 					break
 				else:
 					print("Iteracion "+ str(ite) + ": ")
@@ -31,7 +32,9 @@ class Red():
 						b=b+e
 					#self.__imprimir_aux(e, w, b, ite)
 					ite+=1
-		self.w=w; self.b=b;
+		self.w=w; self.b=b
+		archivo.write(self.w.to_s() + "\n" )
+		archivo.write(self.b.to_s())
 	"""
 	Se encarga de imprimir W, b y e de cada iteración.
 	Recibe como parametro W, b y e
