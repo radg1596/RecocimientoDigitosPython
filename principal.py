@@ -14,11 +14,10 @@ class Red():
 	Guarda la configuración final de W y b cuando converge el algoritmo.
 	"""
 	def entrenar(self,lista):
-		archivo=open("wb.txt", "w+")
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
-		while e_cero!=len(tipos) and ite<99999:
+		while e_cero!=len(tipos) and ite<999999:
 			for tipo in tipos:
-				if e_cero==len(tipos) or ite>100000:
+				if e_cero==len(tipos) or ite>1000000:
 					break
 				else:
 					print("Iteracion "+ str(ite) + ": ")
@@ -30,8 +29,8 @@ class Red():
 						e_cero=0
 						w=w + ( e*(tipo.p.transponer()) )
 						b=b+e
-					#self.__imprimir_aux(e, w, b, ite)
 					ite+=1
+		archivo=open("wb.txt", "w+")
 		self.w=w; self.b=b
 		archivo.write(self.w.to_s() + "\n" )
 		archivo.write(self.b.to_s())
@@ -55,7 +54,7 @@ class Red():
 		return a
 """
 Es la función principal
-Se encarga de elegir qué datos cargarle a la red,
+Se encarga de cargarle datos a la red,
 la entrena y después solicita entradas para reconocer
 """
 def main():
