@@ -13,7 +13,7 @@ class Red():
 		con su t y p.
 	Guarda la configuración final de W y b cuando converge el algoritmo.
 	"""
-	def entrenar(self,lista):
+	def entrenar(self, lista):
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
 		while e_cero!=len(tipos) and ite<999999:
 			for tipo in tipos:
@@ -27,13 +27,12 @@ class Red():
 						e_cero+=1
 					else:
 						e_cero=0
-						w=w + ( e*(tipo.p.transponer()) )
-						b=b+e
+						w = w + ( e*(tipo.p.transponer()) )
+						b = b+e
 					ite+=1
 		archivo=open("wb.txt", "w+")
 		self.w=w; self.b=b
-		archivo.write(self.w.to_s() + "\n" )
-		archivo.write(self.b.to_s())
+		archivo.write(self.w.to_s() + "\n" + self.b.to_s())
 	"""
 	Se encarga de imprimir W, b y e de cada iteración.
 	Recibe como parametro W, b y e
@@ -60,8 +59,7 @@ la entrena y después solicita entradas para reconocer
 def main():
 	red=Red()
 	datos=Datos()
-	datos.cargar()
-	red.entrenar([datos.w,datos.b,datos.tipos])	
+	red.entrenar( datos.cargar() )	
 	print("***********Se ha entrenado a la red************")
 	while True:
 		print("Introduce un vector para reconocerlo: ")
@@ -69,6 +67,6 @@ def main():
 		if cad=="salir":
 			break
 		else:
-			rec = red.reconocer(Matriz(cad))
+			red.reconocer(Matriz(cad))
 				
 main()
