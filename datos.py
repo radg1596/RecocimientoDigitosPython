@@ -1,6 +1,5 @@
 from mat import *
 import random
-archivo=open("wb.txt", "r")
 
 """
 Recibe el numero de renglones y columnas
@@ -25,9 +24,9 @@ class Tipo():
 Esta clase sólo se encarga de contener los datos de entrenamiento
 """
 class Datos():
-	w=Matriz(""); b=Matriz("")
 	"""DATOS DE ENTRENAMIENTO"""
 	def cargar(self):
+		archivo=open("wb.txt", "r")
 		self.tipos=[]
 		#self.w = mat_al(4,42)
 		#self.b = mat_al(4,1)
@@ -279,7 +278,7 @@ class Datos():
 
 		
 		
-"""Pivote
+"""Prototipo
 		self.tipos.append(Tipo(" 0 / 0 / 0 / 0 / 0 / 0 " +
 							 "/  0 / 0 / 0 / 0 / 0 / 0 " + 
 							 "/  0 / 0 / 0 / 0 / 0 / 0 " +
