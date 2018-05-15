@@ -8,11 +8,8 @@ class Check():
 		Checkbutton(
 			ventana, variable = self.valor).grid(row = i, column = j)
 	
-	def mostrar_valor(self):
-		print(self.valor.get())
-	
 class UI:
-	def __init__(self, ventana):
+	def __init__(self, ventana, red, datos):
 		self.checks = []
 		for i in range (1, 8):
 			for j in range(1, 7):
@@ -22,6 +19,8 @@ class UI:
 		Label (ventana, text = "Es el numero: ").grid(row = 10, column = 9)
 		b_limpiar = Button(ventana, text = "LIMPIAR", command = self.limpiar)
 		b_limpiar.grid(row = 12, column = 9)
+		b_ent = Button(ventana, text = "ENTRENAR", command = self.entrena)
+		b_ent.grid(row = 13, column = 9)
 		
 	def reconoce(self):
 		aux = ""
@@ -29,15 +28,20 @@ class UI:
 		for check in self.checks:
 			aux = aux  + " " + str(check.valor.get()) + " /"
 		entrada = aux[0:len(aux)-1]
-		out = identificar_digito(Matriz(entrada))
+		out = red.reconocer(Matriz(entrada)).to_s()
+		out = bin_dec(out)
 		Label (ventana, text = str(out)).grid(row = 11, column = 9)
 		
 	def limpiar(self):
-		ui = UI(ventana)
+		ui = UI(ventana, red, datos)
+		
+	def entrena(self):
+		red.entrenar( datos.cargar() )
 				
 
-ui = UI(ventana)
+red=Red()
+datos=Datos()	
+ui = UI(ventana, red, datos)
 mainloop()
-
 
 

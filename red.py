@@ -34,6 +34,7 @@ class Red():
 		self.w=w; self.b=b
 		archivo.write(self.w.to_s() + "\n" + self.b.to_s())
 		archivo.close()
+		print("***********Se ha entrenado a la red************")
 	"""
 	Se encarga de imprimir W, b y e de cada iteración.
 	Recibe como parametro W, b y e
@@ -52,24 +53,3 @@ class Red():
 		a=( (self.w*entrada)+(self.b) ).hardlim()
 		print(a)
 		return a.transponer()
-"""
-Es la función principal
-Se encarga de cargarle datos a la red,
-la entrena y después solicita entradas para reconocer
-"""
-def identificar_digito(entrada):
-	red=Red()
-	datos=Datos()
-	red.entrenar( datos.cargar() )	
-	print("***********Se ha entrenado a la red************")
-	return red.reconocer(entrada)
-	"""
-	while True:
-		print("Introduce un vector para reconocerlo: ")
-		cad=input()
-		if cad=="salir":
-			break
-		else:
-			red.reconocer(Matriz(cad))
-	"""			
-#main()
