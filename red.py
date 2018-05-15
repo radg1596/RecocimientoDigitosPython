@@ -15,9 +15,9 @@ class Red():
 	"""
 	def entrenar(self, lista):
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
-		while e_cero!=len(tipos) and ite<999999:
+		while e_cero!=len(tipos) and ite<9999999:
 			for tipo in tipos:
-				if e_cero==len(tipos) or ite>1000000:
+				if e_cero==len(tipos) or ite>10000000:
 					break
 				else:
 					print("Iteracion "+ str(ite) + ": ")
@@ -36,9 +36,7 @@ class Red():
 		archivo.close()
 		print("***********Se ha entrenado a la red************")
 	"""
-	Se encarga de imprimir W, b y e de cada iteración.
-	Recibe como parametro W, b y e
-	No devuelve nada.
+
 	"""	
 	def __imprimir_aux(self, e, w, b, ite):
 		print("\ne("+str(ite)+") = \n"+ e)
@@ -51,5 +49,4 @@ class Red():
 	"""	 
 	def reconocer(self, entrada):
 		a=( (self.w*entrada)+(self.b) ).hardlim()
-		print(a)
 		return a.transponer()
