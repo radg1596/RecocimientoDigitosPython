@@ -43,7 +43,7 @@ class UI:
 		
 	def escribe(self):
 		arch = open("sal.txt", "a")#a
-		sal = "\t\tself.tipos.append(Tipo (self.cad_fm (\n\t\t\t\t\t\t\t \""
+		sal = "\n\t\tself.tipos.append(Tipo (self.cad_fm (\n\t\t\t\t\t\t\t \""
 		i=1
 		for check in self.checks:
 			#print (check.valor.get())
@@ -56,7 +56,7 @@ class UI:
 				i = 1
 			sal = sal+valor
 			i = i+1
-		sal = sal + "\" ) ,		\"0 / 0 / 0 / 0\"))"
+		sal = sal + "\" ) ,		\"1 / 0 / 0 / 1\"))"
 		print (sal)
 		arch.write(sal)				
 
