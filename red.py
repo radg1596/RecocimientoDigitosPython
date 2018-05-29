@@ -15,12 +15,12 @@ class Red():
 	"""
 	def entrenar(self, lista):
 		ite=1; e_cero=0; w=lista[0]; b=lista[1]; tipos=lista[2]
-		while e_cero!=len(tipos) and ite<99999999:
+		while e_cero!=len(tipos) and ite<999999999:
 			for tipo in tipos:
-				if e_cero==len(tipos) or ite>100000000:
+				if e_cero==len(tipos) or ite>1000000000:
 					break
 				else:
-					print("Iteracion "+ str(ite) + ": " + str(e_cero))
+					print("Iteracion "+ str(ite) + ": ")
 					a = ( (w*tipo.p)+b ).hardlim()
 					e = tipo.t-a
 					if e.null()==True:

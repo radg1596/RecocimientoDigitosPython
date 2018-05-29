@@ -53,7 +53,7 @@ class Matriz():
 				self.renglones=self.renglones+1
 				aux=[]
 			else:
-				aux.append(elemento)
+				aux.append(float(elemento))
 		if contenido!="":		
 			self.numeros.append(aux)
 	"""
@@ -68,7 +68,7 @@ class Matriz():
 			aux="|"
 			for renglon in self.numeros:
 				for elemento in renglon:
-					aux=aux+"  "+elemento
+					aux=aux+"  "+str(elemento)
 				aux=aux+"  | \n|"
 			aux=aux[0:len(aux)-1]
 		return aux
@@ -86,7 +86,7 @@ class Matriz():
 			for i in range(0,self.renglones):
 					renglon = []
 					for j in range(0,self.columnas):
-						renglon.append( str (float(self.numeros[i][j])+float(matb.numeros[i][j])) )
+						renglon.append( self.numeros[i][j] + matb.numeros[i][j] )
 					mat_c.numeros.append(renglon)
 			#print(mat_c.imprimir())
 			return mat_c
@@ -133,8 +133,8 @@ class Matriz():
 				r_temp = []
 				for columna in mat_aux.numeros:
 					for i in range (0, mat_aux.columnas):
-						sum_temp=sum_temp+ (float(renglon[i]) * float(columna[i]))
-					r_temp.append(str(sum_temp))
+						sum_temp=sum_temp+ (renglon[i] * columna[i])
+					r_temp.append(sum_temp)
 					sum_temp=0
 				mat_c.numeros.append(r_temp)
 			return mat_c
@@ -150,7 +150,7 @@ class Matriz():
 		nulo=True
 		for renglon in self.numeros:
 			for elemento in renglon:
-				if float(elemento)!=0.0:
+				if elemento!=0.0:
 					nulo=False
 					break
 		return nulo
@@ -166,10 +166,10 @@ class Matriz():
 		for renglon in self.numeros:
 			r_temp = []
 			for elemento in renglon:
-				if (float(elemento)>=0.0):
-					r_temp.append("1")
+				if (elemento>=0.0):
+					r_temp.append(1.0)
 				else:
-					r_temp.append("0")
+					r_temp.append(0.0)
 			mat_h.numeros.append(r_temp)
 		return mat_h
 	"""Método multiplicar por un escalar
@@ -182,7 +182,7 @@ class Matriz():
 		for renglon in self.numeros:
 			r_temp = []
 			for elemento in renglon:
-				r_temp.append( str(float(elemento)*escalar) )
+				r_temp.append( elemento*escalar )
 			mat_e.numeros.append(r_temp)
 		return mat_e
 	
@@ -198,9 +198,7 @@ class Matriz():
 		else:
 			for renglon in self.numeros:
 				for elemento in renglon:
-					aux=aux+"  "+elemento
+					aux=aux+"  "+str(elemento)
 				aux=aux+"  /"
 			aux=aux[0:len(aux)-1]
 		return aux
-
-
